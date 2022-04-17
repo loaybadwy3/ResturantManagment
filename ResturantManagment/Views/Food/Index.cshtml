@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ResturantManagment.Models.Food>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<a asp-controller="Food" asp-action="Add" class="btn btn-success">Add</a>
+@if (Model.Count() > 0)
+{
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col" style="width:25%">Name</th>
+      <th scope="col" style="width:25%">Price</th>
+      <th scope="col" style="width:25%">Description</th>
+      <th scope="col" style="width:25%">Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+            @foreach ( var food in Model)
+            {
+                 <tr>
+                      <td>@food.Name</td>
+                      <td>@food.Price</td>
+                      <td>@food.Description</td>
+                      <td>
+                          <a asp-controller="Food" asp-action="Update" asp-route-id="@food.Id" class="btn btn-primary col-5 m-1">Update</a>
+                          <a asp-controller="Food" asp-action="Details" asp-route-id="@food.Id" class="btn btn-primary col-5 m-1">Details</a>
+                          <a asp-controller="Food" asp-action="Delete" asp-route-id="@food.Id" class="btn btn-danger col-5 m-1">Delete</a>
+                      </td>
+                 </tr>
+            }
+  </tbody>
+</table>
+}
+else
+{
+    <h1>No Resturant added yet</h1>
+}
+
+

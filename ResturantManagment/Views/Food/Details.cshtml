@@ -1,0 +1,25 @@
+﻿@model ResturantManagment.ViewModels.FoodIngredientViewModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<form>
+    <input asp-for="Food.Id" hidden/>
+  <div class="mb-3">
+    <p class="form-control">@Model.Food.Name</p>
+  </div>
+  <div class="mb-3">
+     <p class="form-control">@Model.Food.Price</p>
+  </div>
+  <div class="mb-3">
+     <p class="form-control">@Model.Food.Description</p>
+  </div>
+    @foreach ( var ingredient in @Model.Ingredients)
+    {
+        <p>@ingredient.Name</p>
+    }
+  <a asp-controller="Food" asp-action="Index" class="btn btn-primary">Back</a>
+</form>
+

@@ -1,0 +1,21 @@
+﻿@model ResturantManagment.Models.Resturant
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1>Update</h1>
+
+<form method="post" asp-action="Update">
+    <input asp-for="Id" hidden/>
+  <div class="mb-3">
+    <label asp-for="Name">Name</label>
+    <input asp-for="Name" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label asp-for="Number" class="form-label">Number</label>
+    <input asp-for="Number" class="form-control">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Update</button>
+</form>
+

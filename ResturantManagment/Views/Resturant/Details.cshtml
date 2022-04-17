@@ -1,0 +1,22 @@
+﻿@model ResturantManagment.ViewModels.ResturantFoodDetailsViewModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<form>
+    <input asp-for="Resturant.Id" hidden/>
+  <div class="mb-3">
+    <p class="form-control">@Model.Resturant.Name</p>
+  </div>
+  <div class="mb-3">
+     <p class="form-control">@Model.Resturant.Number</p>
+  </div>
+    @foreach ( var food in @Model.Foods)
+    {
+        <p>@food.Name</p>
+    }
+  <a asp-controller="Food" asp-action="Index" class="btn btn-primary">Back</a>
+</form>
+

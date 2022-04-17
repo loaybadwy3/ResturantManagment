@@ -1,0 +1,32 @@
+﻿@model ResturantManagment.ViewModels.FoodIngredientViewModel
+@{
+    ViewData["Title"] = "Add";
+}
+
+<h1>Add</h1>
+
+<form method="post" asp-action="Add">
+  <div class="mb-3">
+    <label asp-for="FoodName">Name</label>
+    <input asp-for="FoodName" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label asp-for="FoodPrice" class="form-label">Price</label>
+    <input asp-for="FoodPrice" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label asp-for="FoodDescription" class="form-label">Description</label>
+    <input asp-for="FoodDescription" class="form-control">
+  </div>
+    @foreach (var ingredient in Model.Ingredients)
+    {
+        <div class="form-check">
+          <input name ="IntIngredients" class="form-check-input" type="checkbox" value="@ingredient.Id" id="@ingredient.Id">
+          <label class="form-check-label" for="@ingredient.Id">
+            @ingredient.Name
+          </label>
+        </div>
+    }
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
