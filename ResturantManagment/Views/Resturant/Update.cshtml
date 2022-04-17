@@ -1,4 +1,4 @@
-﻿@model ResturantManagment.Models.Resturant
+﻿@model ResturantManagment.ViewModels.ResturantFoodViewModel
 @{
     ViewData["Title"] = "Update";
 }
@@ -6,15 +6,24 @@
 <h1>Update</h1>
 
 <form method="post" asp-action="Update">
-    <input asp-for="Id" hidden/>
+    <input asp-for="Resturant.Id" hidden/>
   <div class="mb-3">
-    <label asp-for="Name">Name</label>
-    <input asp-for="Name" class="form-control">
+    <label asp-for="ResturantName">Name</label>
+    <input asp-for="ResturantName" class="form-control">
   </div>
   <div class="mb-3">
-    <label asp-for="Number" class="form-label">Number</label>
-    <input asp-for="Number" class="form-control">
+    <label asp-for="ResturantNumber" class="form-label">Number</label>
+    <input asp-for="ResturantNumber" class="form-control">
   </div>
+      @foreach ( var food in Model.Foods)
+    {
+        <div class="form-check">
+          <input name ="IntFoods" class="form-check-input" type="checkbox" value="@food.Id" id="@food.Id">
+          <label class="form-check-label" for="@food.Id">
+            @food.Name
+          </label>
+        </div>
+    }
 
   <button type="submit" class="btn btn-primary">Update</button>
 </form>

@@ -80,14 +80,37 @@ namespace ResturantManagment.Controllers
                 return NotFound();
             }
             var obj = _db.Resturats.Find(id);
-            return View(obj);
+            ResturantFoodViewModel vm = new ResturantFoodViewModel()
+            {
+                ResturantName = obj.Name,
+                ResturantNumber = obj.Number,
+                Foods = _db.Foods.ToList(),
+            };
+
+            
+            return View(vm);
         }
 
         [HttpPost]
-        public IActionResult Update(Resturant obj)
+        public IActionResult Update(int? id, ResturantFoodViewModel VM)
         {
-            _db.Resturats.Update(obj);
+            var resturant = _db.Resturats.Where(x => x.Id == id).SingleOrDefault();
+            resturant.Name = VM.ResturantName;
+            resturant.Number = VM.ResturantNumber;
+            _db.Resturats.Update(resturant);
             _db.SaveChanges();
+
+            foreach (var food in VM.IntFoods)
+            {
+                ResturantFood RF = new ResturantFood
+                {
+                    FoodId = food,
+                    ResturantId = resturant.Id,
+                };
+                _db.ResturantFoods.Update(RF);
+                _db.SaveChanges();
+            }
+
             return RedirectToAction("Index");
 
         }
